@@ -10,11 +10,22 @@ e.preventDefault();
 socket.emit('chat',{message});
 setMessage('');
   }
+  useEffect(()=>{
+    socket.on('chat',(payload)=>{
+      setChat([...chat,payload]);
+    })
+  })
   return (
     <div className="App">
       <header className="App-header">
+      <h1>My chat application</h1>
+      {
+        chat.map((payload,idx)=> 
+        {
+        return <p key={idx}>{payload.message}</p>
+      })
+      }
       <form onSubmit={sendChat}>
-       <h1>My chat application</h1>
        <input type="text" name='text' value={message} onChange={(e)=>setMessage(e.target.value)}/>
        <button type='submit'>Send</button>
        </form>
