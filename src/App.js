@@ -4,26 +4,36 @@ import { io } from 'socket.io-client';
 function App() {
   const[chat,setChat]=useState([]);
   const[message,setMessage]=useState("");
+  const[userName,setUserName]=useState("");
 const socket=io.connect('http://localhost:5000/');
   const sendChat=(e)=>{
 e.preventDefault();
-socket.emit('chat',{message});
+if(message){
+socket.emit('chat message',{message,userName});
 setMessage('');
+}
   }
   useEffect(()=>{
-    socket.on('chat',(payload)=>{
+    
+    socket.on('chat message',(payload)=>{
       setChat([...chat,payload]);
     })
-  })
+  },[chat])
+useEffect(()=>{
+  return()=>{
+setUserName(prompt('Enter your name?'))
+console.log(userName)
+  }
+},[])
   return (
     <div className="App">
       <header className="App-header">
       <h1>My chat application</h1>
       {
         chat.map((payload,idx)=> 
-        {
-        return <p key={idx}>{payload.message}</p>
-      })
+        (
+         <p key={idx}>{payload.userName}:{payload.message}</p>
+        ))
       }
       <form onSubmit={sendChat}>
        <input type="text" name='text' value={message} onChange={(e)=>setMessage(e.target.value)}/>

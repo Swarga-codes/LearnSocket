@@ -1,17 +1,19 @@
 const app=require('express')();
 const server=require('http').createServer(app);
-const io=require('socket.io')(server,{
-    cors: {
-      origin: "*",
-      allowedHeaders: ["GET","POST"],
-      credentials: true
-    }
-  });
+const {Server}=require('socket.io')
+const io=new Server(server,{
+  cors:{
+    origin:'*'
+  }
+})
 io.on('connection',(socket)=>{
-    console.log('Connected to socket...',socket);
-    socket.on('chat',(payload)=>{
-        console.log('Payload...',payload);
-        io.emit('chat',payload);
+    console.log('Connected to socket...');
+    socket.on('chat message',(payload)=>{
+        // console.log('Payload...',payload);
+        io.emit('chat message',payload);
+    })
+    socket.on('disconnect',()=>{
+      console.log('Client left...')
     })
 })
 server.listen(5000,()=>{
