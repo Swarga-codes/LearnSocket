@@ -7,7 +7,7 @@
 /Vanilla/node_modules
 # testing
 /coverage
-
+/server/.env
 # production
 /build
 
