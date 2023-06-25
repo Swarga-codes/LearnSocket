@@ -6,6 +6,11 @@ function App() {
   const[message,setMessage]=useState("");
   const[userName,setUserName]=useState("");
 const socket=io.connect('http://localhost:5000/');
+const fetchChats=async()=>{
+  const response=await fetch('http://localhost:5000/chats');
+  const data=await response.json()
+  console.log(data)
+}
   const sendChat=(e)=>{
 e.preventDefault();
 if(message){
@@ -14,15 +19,17 @@ setMessage('');
 }
   }
   useEffect(()=>{
-    
+    fetchChats()
     socket.on('chat message',(payload)=>{
       setChat([...chat,payload]);
     })
+    
   },[chat])
 useEffect(()=>{
   return()=>{
 setUserName(prompt('Enter your name?'))
 console.log(userName)
+
   }
 },[])
   return (
