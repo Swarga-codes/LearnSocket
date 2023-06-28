@@ -29,6 +29,12 @@ const io=new Server(server,{
 })
 io.on('connection',(socket)=>{
     console.log('Connected to socket...',socket.id);
+    socket.on('join',()=>{
+      CHATS.find().then(response=>{
+       socket.emit('join',response) 
+      })
+      .catch(err=>console.log(err))
+    })
     socket.on('chat message',(payload)=>{
         // console.log('Payload...',payload);
         io.emit('chat message',payload);

@@ -6,12 +6,6 @@ function App() {
   const[chat,setChat]=useState([]);
   const[message,setMessage]=useState("");
   const[userName,setUserName]=useState("");
-const fetchChats=async()=>{
-  const response=await fetch('http://localhost:5000/chats');
-  const data=await response.json()
-  console.log(data)
-  setChat(data)
-}
   const sendChat=(e)=>{
 e.preventDefault();
 if(message){
@@ -26,16 +20,15 @@ setMessage('');
   
 socket.on('chat message',(payload)=>{
   console.log(payload)
-fetchChats()
 
 })
-    
+socket.emit('join')
+socket.on('join',(data)=>{
+
+  console.log('socket data:',data)
+  setChat(data)
+})
   },[chat])
-  useEffect(()=>{
-    return()=>{
-    fetchChats()
-    }
-  },[])
 useEffect(()=>{
 
   return()=>{
@@ -50,9 +43,9 @@ setUserName(prompt('Enter your name?'))
       <h1>My chat application</h1>
       <div className="chat_display">
       {
-        chat.map((payload,idx)=> 
+        chat?.map((payload,idx)=> 
         (
-         <p key={idx}>{payload.senderName}:{payload.chatContent}</p>
+         <p key={idx}><b>{payload.senderName}</b>:{payload.chatContent}</p>
         ))
       }
       </div>
