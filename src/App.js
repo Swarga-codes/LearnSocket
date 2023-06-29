@@ -17,6 +17,9 @@ function App() {
     return formattedDate+" at "+formattedTime
 
   }
+  const checkUserName=()=>{
+   return setUserName(prompt('Enter your name?'))
+  }
   const sendChat=(e)=>{
 e.preventDefault();
 if(message){
@@ -39,13 +42,18 @@ setMessage('');
 
   },[chat])
 useEffect(()=>{
-  chatsDisp.current.scrollTop=chatsDisp.current.scrollHeight
-  return()=>{
-    
-setUserName(prompt('Enter your name?'))
 
-  }
+
+    return()=>{
+      // setUserName(prompt('Enter your name?'))
+      checkUserName()
+    }
+
+
 },[])
+useEffect(()=>{
+  chatsDisp.current.scrollTop=chatsDisp.current.scrollHeight
+},[message])
 // localStorage.setItem('name',userName)
   return (
     <div className="App">
