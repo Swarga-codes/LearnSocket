@@ -6,18 +6,40 @@
   background: url('./assets/backgroundpic.jpg');
   background-size: 100vw 100vh;
   background-repeat: no-repeat;
-}
-header{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+.heading{
+  padding: 0.4rem 1rem;
+  display: flex;
+  border-bottom: 1px solid;
+}
+svg{
+  height: 3rem;
+}
+.chatapp{
+  width: 60%;
+  padding: 1rem 0rem;
+  background: white;
+  border-radius: 12px;
+}
 .chat_display{
-  width: 40%;
+  width:auto;
   background-color: white;
   height: 70vh;
-  border-radius: 12px;
+  margin: 1rem;
   padding: 1rem 1rem;
   overflow-y: scroll;
+  border: 1px solid;
+}
+
+
+.chat_content{
+    max-width: 60%;
+    width: fit-content;
+    padding: 0.8rem 0.5rem;
+    background-image: linear-gradient(315deg, #63a4ff 0%, #83eaf1 74%);
+    border-radius: 8px;
 }
