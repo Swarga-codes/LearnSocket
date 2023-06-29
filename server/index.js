@@ -22,8 +22,9 @@ app.get('/',(req,res)=>{
 })
 const io=new Server(server,{
   cors:{
-    origin:'*'
-  }
+    origin:'*',
+    methods:["GET","POST"]
+  },
 })
 io.on('connection',(socket)=>{
     console.log('Connected to socket...',socket.id);

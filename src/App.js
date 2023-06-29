@@ -1,7 +1,7 @@
 import './App.css';
 import { useEffect,useRef,useState } from 'react';
 import { io } from 'socket.io-client';
-const socket=io.connect('http://localhost:5000/');
+const socket=io.connect('https://learn-socket-backend.onrender.com/');
 function App() {
   const[chat,setChat]=useState([]);
   const[message,setMessage]=useState("");
