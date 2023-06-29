@@ -16,14 +16,17 @@ setMessage('');
 
 }
   }
+
   useEffect(()=>{
+    socket.on('chat message',(payload)=>{
+      // console.log(payload)
+    })
+    socket.emit('join')
+    socket.on('join',(data)=>{
+      setChat(data)
+    })
 
-socket.emit('join')
-socket.on('join',(data)=>{
-  setChat(data)
-})
-
-  },[sendChat])
+  },[chat])
 useEffect(()=>{
 
   return()=>{
@@ -32,7 +35,7 @@ setUserName(prompt('Enter your name?'))
 
   }
 },[])
-localStorage.setItem('name',userName)
+// localStorage.setItem('name',userName)
   return (
     <div className="App">
      <div className="chatapp">
