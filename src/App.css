@@ -67,6 +67,11 @@ form{
   display: flex;
   padding: 1rem 1rem;
 }
+.delivery{
+  font-size: 14px;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
 @media(max-width:991px){
   .chatapp{
     width: 95%;

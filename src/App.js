@@ -6,6 +6,21 @@ function App() {
   const[chat,setChat]=useState([]);
   const[message,setMessage]=useState("");
   const[userName,setUserName]=useState("");
+  const[date,setDate]=useState("")
+  const[time,setTime]=useState("")
+  const formatter=(dateString)=>{
+    // const dateString = "2023-06-29T16:36:53.997Z";
+    const date = new Date(dateString);
+    
+    // Convert to a specific date and time format
+    const formattedDate = date.toLocaleDateString('en-US');
+    const formattedTime = date.toLocaleTimeString('en-US');
+    // setDate(formattedDate)
+    // setTime(formattedTime)
+    return formattedDate+" at "+formattedTime
+    console.log(formattedDate); // Output: 6/29/2023
+    console.log(formattedTime); // Output: 12:36:53 PM
+  }
   const sendChat=(e)=>{
 e.preventDefault();
 if(message){
@@ -55,6 +70,7 @@ setUserName(prompt('Enter your name?'))
          <div className="chat_content">
          {payload.chatContent}
          </div>
+         <p className='delivery'>Delivered on {formatter(payload.createdAt)}</p>
          </div>
 
         ))
