@@ -10,6 +10,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
 .heading{
   padding: 0.4rem 1rem;
@@ -24,11 +25,12 @@ svg{
   padding: 1rem 0rem;
   background: white;
   border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .chat_display{
   width:auto;
   background-color: white;
-  height: 70vh;
+  height: 60vh;
   margin: 1rem;
   padding: 1rem 1rem;
   overflow-y: scroll;
@@ -42,4 +44,30 @@ svg{
     padding: 0.8rem 0.5rem;
     background-image: linear-gradient(315deg, #63a4ff 0%, #83eaf1 74%);
     border-radius: 8px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.chat_text{
+  width: 100%;
+  padding: 1rem 1rem;
+  border: 1px solid black;
+  border-radius: 6px;
+}
+.sendBtn svg{
+  height: 2.5rem;
+ 
+}
+.sendBtn{
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+form{
+  display: flex;
+  padding: 1rem 1rem;
+}
+@media(max-width:991px){
+  .chatapp{
+    width: 95%;
+  }
 }
