@@ -44,10 +44,10 @@ setMessage('');
 useEffect(()=>{
 
 
-    return()=>{
-      // setUserName(prompt('Enter your name?'))
-      checkUserName()
-    }
+  
+      setUserName(prompt('Enter your name?'))
+      // checkUserName()
+
 
 
 },[])
