@@ -35,12 +35,11 @@ setMessage('');
     socket.emit('join')
     socket.on('join',(data)=>{
       setChat(data)
-      chatsDisp.current.scrollTop=chatsDisp.current.scrollHeight
     })
 
   },[chat])
 useEffect(()=>{
-
+  chatsDisp.current.scrollTop=chatsDisp.current.scrollHeight
   return()=>{
     
 setUserName(prompt('Enter your name?'))
