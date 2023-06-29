@@ -17,11 +17,6 @@ mongoose.connection.on('connected',()=>{
 mongoose.connection.on('error',()=>{
   console.log('Couldnt connect to mongodb..')
 })
-app.get('/chats',(req,res)=>{
-  CHATS.find().then(response=>res.status(200).json(response))
-  .catch(err=>console.log(err))
-})
-
 const io=new Server(server,{
   cors:{
     origin:'*'
@@ -48,6 +43,6 @@ io.on('connection',(socket)=>{
       console.log('Client left...')
     })
 })
-server.listen(5000,()=>{
+server.listen(5000||process.env.port,()=>{
     console.log('server is active...')
 });

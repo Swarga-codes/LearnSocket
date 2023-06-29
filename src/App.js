@@ -1,13 +1,12 @@
 import './App.css';
-import { useEffect,useState } from 'react';
+import { useEffect,useRef,useState } from 'react';
 import { io } from 'socket.io-client';
 const socket=io.connect('http://localhost:5000/');
 function App() {
   const[chat,setChat]=useState([]);
   const[message,setMessage]=useState("");
   const[userName,setUserName]=useState("");
-  const[date,setDate]=useState("")
-  const[time,setTime]=useState("")
+  const chatsDisp=useRef()
   const formatter=(dateString)=>{
     // const dateString = "2023-06-29T16:36:53.997Z";
     const date = new Date(dateString);
@@ -15,11 +14,8 @@ function App() {
     // Convert to a specific date and time format
     const formattedDate = date.toLocaleDateString('en-US');
     const formattedTime = date.toLocaleTimeString('en-US');
-    // setDate(formattedDate)
-    // setTime(formattedTime)
     return formattedDate+" at "+formattedTime
-    console.log(formattedDate); // Output: 6/29/2023
-    console.log(formattedTime); // Output: 12:36:53 PM
+
   }
   const sendChat=(e)=>{
 e.preventDefault();
@@ -39,6 +35,7 @@ setMessage('');
     socket.emit('join')
     socket.on('join',(data)=>{
       setChat(data)
+      chatsDisp.current.scrollTop=chatsDisp.current.scrollHeight
     })
 
   },[chat])
@@ -61,7 +58,7 @@ setUserName(prompt('Enter your name?'))
 <h1>Chat App</h1>
    
     </div>
-      <div className="chat_display">
+      <div className="chat_display" ref={chatsDisp}>
       {
         chat?.map((payload,idx)=> 
         (
