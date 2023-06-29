@@ -17,6 +17,9 @@ mongoose.connection.on('connected',()=>{
 mongoose.connection.on('error',()=>{
   console.log('Couldnt connect to mongodb..')
 })
+app.get('/',(req,res)=>{
+  res.send('<h1>Welcome to Socket backend</h1>')
+})
 const io=new Server(server,{
   cors:{
     origin:'*'
