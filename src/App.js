@@ -17,9 +17,6 @@ function App() {
     return formattedDate+" at "+formattedTime
 
   }
-  const checkUserName=()=>{
-   return setUserName(prompt('Enter your name?'))
-  }
   const sendChat=(e)=>{
 e.preventDefault();
 if(message){
@@ -46,7 +43,6 @@ useEffect(()=>{
 
   
       setUserName(prompt('Enter your name?'))
-      // checkUserName()
 
 
 
@@ -54,7 +50,6 @@ useEffect(()=>{
 useEffect(()=>{
   chatsDisp.current.scrollTop=chatsDisp.current.scrollHeight
 },[message])
-// localStorage.setItem('name',userName)
   return (
     <div className="App">
      <div className="chatapp">
