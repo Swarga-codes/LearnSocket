@@ -60,8 +60,9 @@ useEffect(()=>{
 <h1>Chat App</h1>
    
     </div>
+ 
       <div className="chat_display" ref={chatsDisp}>
-      {
+      {chat?
         chat?.map((payload,idx)=> 
         (
           <div className='chat'>
@@ -73,7 +74,9 @@ useEffect(()=>{
          </div>
 
         ))
-      }
+        :
+        <div class="loader"></div>
+}
       </div>
       
       <form onSubmit={
