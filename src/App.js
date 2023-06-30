@@ -20,6 +20,7 @@ function App() {
   }
   const sendChat=(e)=>{
 e.preventDefault();
+
 if(message){
 socket.emit('chat message',{message,userName});
 chatsDisp.current.scrollTop=chatsDisp.current.scrollHeight
@@ -45,7 +46,9 @@ useEffect(()=>{
 
   
       setUserName(prompt('Enter your name?'))
-
+      if(!userName){
+        setUserName('Anonymous')
+      }
 
 
 },[])
