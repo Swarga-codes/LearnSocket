@@ -6,6 +6,7 @@ function App() {
   const[chat,setChat]=useState([]);
   const[message,setMessage]=useState("");
   const[userName,setUserName]=useState("");
+  const[loader,setLoader]=useState(true);
   const chatsDisp=useRef()
   const formatter=(dateString)=>{
     // const dateString = "2023-06-29T16:36:53.997Z";
@@ -21,7 +22,7 @@ function App() {
 e.preventDefault();
 if(message){
 socket.emit('chat message',{message,userName});
-
+chatsDisp.current.scrollTop=chatsDisp.current.scrollHeight
 
 setMessage('');
 
@@ -35,6 +36,7 @@ setMessage('');
     socket.emit('join')
     socket.on('join',(data)=>{
       setChat(data)
+      setLoader(false);
     })
 
   },[chat])
@@ -62,7 +64,9 @@ useEffect(()=>{
     </div>
  
       <div className="chat_display" ref={chatsDisp}>
-      {chat?
+   {loader?
+        <div class="loader"></div>
+        :
         chat?.map((payload,idx)=> 
         (
           <div className='chat'>
@@ -74,8 +78,8 @@ useEffect(()=>{
          </div>
 
         ))
-        :
-        <div class="loader"></div>
+        
+      
 }
       </div>
       
