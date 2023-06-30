@@ -43,11 +43,14 @@ setMessage('');
   },[chat])
 useEffect(()=>{
 
-
+const promptName=prompt('Enter your name?')
   
-      setUserName(prompt('Enter your name?'))
-      if(!userName){
+      
+      if(!promptName){
         setUserName('Anonymous')
+      }
+      else{
+        setUserName(promptName)
       }
 
 
